@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Danh sách góp ý</title>
+</head>
+<body>
+  <h2>📋 Danh sách góp ý từ CSDL</h2>
+  <table border="1" id="feedbackTable">
+    <tr><th>Tên</th><th>Email</th><th>Góp ý</th></tr>
+  </table>
+
+  <script>
+  fetch('/api/getFeedback')
+    .then(res => res.json())
+    .then(data => {
+      const table = document.getElementById('feedbackTable');
+      data.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${row.Name}</td><td>${row.Email}</td><td>${row.Message}</td>`;
+        table.appendChild(tr);
+      });
+    });
+  </script>
+</body>
+</html>
